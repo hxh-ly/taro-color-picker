@@ -1,0 +1,305 @@
+$myHd:2;
+// ColorPicker组件公共变量
+$color-picker-bg: #FFFFFF;
+$color-picker-border: #E0E0E0;
+$color-picker-text: #000000;
+$color-picker-text-secondary: #9E9E9E;
+$color-picker-active: #2196F3;
+$color-picker-disabled: #E0E0E0;
+$color-picker-gray-light: #F5F5F5;
+
+// 基础尺寸（乘以$myHd进行缩放）
+$color-picker-padding: $myHd * 16px;
+$color-picker-radius: $myHd * 12px;
+$color-picker-spacing: $myHd * 8px;
+$color-picker-font-size-base: $myHd * 14px;
+$color-picker-font-size-large: $myHd * 18px;
+$color-picker-border-size: $myHd * 1px;
+$color-picker-border-size-thick: $myHd * 2px;
+
+.color-picker {
+  width: 100%;
+  padding: $color-picker-padding;
+  box-sizing: border-box;
+  background-color: $color-picker-bg;
+  border-radius: $color-picker-radius;
+
+  &.disabled {
+    opacity: 0.6;
+  }
+
+  .color-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $myHd * 16px;
+
+    .color-picker-title {
+      font-size: $color-picker-font-size-large;
+      font-weight: 600;
+      color: $color-picker-text;
+    }
+
+    .color-picker-close {
+      width: $myHd * 32px;
+      height: $myHd * 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .close-icon {
+        width: $myHd * 16px;
+        height: $myHd * 16px;
+      }
+    }
+  }
+
+  .color-picker-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: $myHd * 20px;
+    padding-bottom: $myHd * 12px;
+    border-bottom: $color-picker-border-size solid $color-picker-border;
+
+    .color-picker-tab {
+      font-size: $color-picker-font-size-base;
+      color: $color-picker-text-secondary;
+      padding: $myHd * 8px $myHd * 16px;
+      border-radius: $myHd * 8px;
+
+      &.active {
+        color: $color-picker-text;
+        background-color: $color-picker-gray-light;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .color-picker-content {
+    .color-slider-item {
+      margin-bottom: $myHd * 16px;
+
+      .color-slider-label {
+        font-size: $color-picker-font-size-base;
+        color: $color-picker-text;
+        margin-bottom: $color-picker-spacing;
+        display: block;
+      }
+
+      .color-slider-container {
+        display: flex;
+        align-items: center;
+        gap: $myHd * 12px;
+
+        .color-slider {
+          flex: 1;
+          height: $myHd * 4px;
+        }
+
+        .color-value-input {
+          width: $myHd * 60px;
+          height: $myHd * 32px;
+          border: $color-picker-border-size solid $color-picker-border;
+          border-radius: $myHd * 6px;
+          text-align: center;
+          font-size: $color-picker-font-size-base;
+        }
+      }
+    }
+
+    .current-color-display {
+      display: flex;
+      align-items: center;
+      gap: $color-picker-spacing;
+      margin: $myHd * 16px 0;
+
+      .color-format-label {
+        font-size: $color-picker-font-size-base;
+        color: $color-picker-active;
+      }
+
+      .current-color-value {
+        font-size: $color-picker-font-size-base;
+        color: $color-picker-text;
+        font-family: monospace;
+      }
+    }
+
+    .opacity-relative {
+      position: relative;
+
+      .opacity-percent-sign {
+        position: absolute;
+        right: 6px;
+      }
+    }
+
+    // 修复不透明度滑块样式
+    .opacity-slider-container {
+      display: flex;
+      align-items: center;
+      margin-top: $color-picker-spacing;
+      flex: 1;
+    }
+
+    .opacity-slider {
+      flex: 1;
+      margin-right: $myHd * 12px;
+    }
+
+    .opacity-input-wrapper {
+      display: flex;
+      align-items: center;
+      /* min-width: $myHd * 80px; */
+    }
+
+    .opacity-value-input {
+      width: $myHd * 40px;
+      text-align: right;
+      border: $color-picker-border-size solid $color-picker-border;
+      border-radius: $myHd * 4px;
+      padding: $myHd * 4px $myHd * 8px;
+      font-size: $color-picker-font-size-base;
+    }
+
+    .opacity-percent-sign {
+      margin-left: $myHd * 4px;
+      font-size: $color-picker-font-size-base;
+      color: #666666;
+    }
+
+    // 新增左右布局容器
+    .preset-colors-wrapper {
+      display: flex;
+      gap: $myHd * 20px;
+      margin-top: $myHd * 20px;
+      align-items: flex-start;
+    }
+
+    // 增大正方形尺寸
+    .preset-color-item-large {
+      flex-shrink: 0; // 防止被压缩
+
+      .preview-color-container {
+        width: $myHd * 80px; // 增大正方形尺寸
+        height: $myHd * 80px; // 正方形高度足够容纳2行预览圆形
+        border-radius: $myHd * 8px;
+        overflow: hidden;
+        position: relative;
+        border: $color-picker-border-size-thick solid transparent;
+        box-shadow: 0 $myHd * 2px $myHd * 4px rgba(0, 0, 0, 0.1);
+      }
+
+      // 背景层 - 固定显示黑白效果
+      .preview-color-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      // 左上半三角 - 黑色
+      .preview-color-upper-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        // 修复clip-path语法
+        -webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
+
+      // 右下半三角 - 白色
+      .preview-color-bottom-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        // 修复clip-path语法
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      }
+
+      // 颜色层 - 应用不透明度
+      .preview-color-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        // 不透明度由React组件动态设置
+      }
+    }
+
+    // 预览圆形网格布局
+    .preset-colors-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax($myHd * 32px, 1fr)); // 每行保持4个预览圆形
+      grid-template-rows: repeat(2, 1fr); // 固定显示2行
+      grid-auto-flow: row;
+      gap: $myHd * 12px;
+      width: auto;
+      align-content: start;
+    }
+
+    // 更新预览圆形样式
+    .preset-color-small {
+      width: $myHd * 32px;
+      height: $myHd * 32px;
+      border-radius: 50%;
+      border: $color-picker-border-size-thick solid transparent;
+      box-sizing: border-box;
+      cursor: pointer;
+      position: relative;
+      justify-self: center;
+      align-self: center;
+
+      &.active::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        border: 6px solid rgba(255, 255, 255, 0.9);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    // 更新添加按钮样式
+    .preset-color-add {
+      width: $myHd * 32px;
+      height: $myHd * 32px;
+      border-radius: 50%;
+      border: $color-picker-border-size-thick dashed $color-picker-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $color-picker-font-size-large;
+      color: $color-picker-text-secondary;
+      cursor: pointer;
+      justify-self: center;
+      align-self: center;
+
+      &:active {
+        background-color: $color-picker-gray-light;
+        border-color: $color-picker-active;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
