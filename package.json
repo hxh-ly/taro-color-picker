@@ -1,6 +1,6 @@
 {
   "name": "taro-color-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A customizable color picker component for React/Taro",
   "main": "dist/taro-color-picker.cjs.js",
   "module": "dist/taro-color-picker.esm.js",
