@@ -24,6 +24,10 @@
   ],
   "author": "axuaxu",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hxh-ly/taro-color-picker"
+  },
   "peerDependencies": {
     "@tarojs/components": "^4.0.0",
     "@tarojs/taro": "4.1.4",
