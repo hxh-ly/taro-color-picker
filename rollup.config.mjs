@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
 
 // 直接定义包名，避免导入package.json
@@ -35,7 +36,8 @@ const baseConfig = {
       extract: extractStyles, // 是否分离样式到单独的CSS文件
       minimize: true,
       modules: false, // 不使用CSS Modules
-      use: ['sass']
+      use: ['sass'],
+      plugins: [autoprefixer()]
     })
   ]
 };

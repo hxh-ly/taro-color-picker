@@ -1,7 +1,5 @@
 # taro-color-picker
 
-# Taro Color Picker
-
 一个高度可定制的颜色选择器组件，专为React/Taro框架设计，同时支持小程序和H5平台。
 
 ## 组件介绍
@@ -42,7 +40,7 @@ yarn add taro-color-picker
 import React, { useState } from 'react';
 import { View } from '@tarojs/components';
 import ColorPicker from 'taro-color-picker';
-import 'taro-color-picker/index.css'; // 导入样式文件
+import 'taro-color-picker/taro-color-picker.esm.css'; // 导入样式文件
 
 const App = () => {
   const [color, setColor] = useState('#FF5733');
